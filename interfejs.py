@@ -8,6 +8,9 @@ from PIL import ImageTk, Image
 from functools import partial
 import datetime
 import numpy as np
+import dateutil.relativedelta
+import pkg_resources.py2_warn
+
 
 
 client = pymongo.MongoClient("mongodb://projektio:haslo@projektio-shard-00-00-txmjx.mongodb.net:27017,projektio-shard-00-01-txmjx.mongodb.net:27017,projektio-shard-00-02-txmjx.mongodb.net:27017/test?ssl=true&replicaSet=ProjektIO-shard-0&authSource=admin&retryWrites=true&w=majority")
@@ -148,7 +151,7 @@ def admin():
 
     def przejdz_do_wszystkie():
         okno.destroy()
-        zamowienia_wszystkie()
+        zamowienia_wszystkie('nie')
 
     okno = tk.Toplevel(root)
     tlo2 = tk.Canvas(okno, height = 1000, width = 1600, bg = 'white')
@@ -366,7 +369,7 @@ def okno_przypisania(admin1, id):
     canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
 
-def zamowienia_wszystkie():
+def zamowienia_wszystkie(czymiesiac):
     okno_k = tk.Toplevel(root)
 
     tlo2 = tk.Canvas(okno_k, height=1000, width=1600, bg='white')
@@ -376,11 +379,22 @@ def zamowienia_wszystkie():
         okno_k.destroy()
         admin()
 
+    def przejdz_do_miesiac(switch):
+        okno_k.destroy()
+        zamowienia_wszystkie(switch)
+
     powitanie = tk.Label(okno_k, text='ZLECENIA W SYSTEMIE:', font=myFont, bg='blue', fg='yellow')
     powitanie.place(relx=0.3, rely=0.05, relwidth=0.4, relheight=0.1)
 
     but_powrot = tk.Button(okno_k, text='Wroc', font=myFont, bg='blue', fg='yellow', command=cofnij)
     but_powrot.place(relx=0.05, rely=0.05, relwidth=0.2, relheight=0.1)
+
+    if (czymiesiac == 'nie'):
+        but_ostatnie = tk.Button(okno_k, text='Ostatni miesiąc', font=myFont, bg='blue', fg='yellow', command=partial(przejdz_do_miesiac, 'tak'))
+        but_ostatnie.place(relx=0.75, rely=0.05, relwidth=0.2, relheight=0.1)
+    else:
+        but_ostatnie = tk.Button(okno_k, text='Wszystkie', font=myFont, bg='blue', fg='yellow', command=partial(przejdz_do_miesiac, 'nie'))
+        but_ostatnie.place(relx=0.75, rely=0.05, relwidth=0.2, relheight=0.1)
 
 
     container = ttk.Frame(okno_k)
@@ -400,12 +414,13 @@ def zamowienia_wszystkie():
 
     row_nr = 1
     for i in col_zlecenia.find():
-        frame1 = tk.Frame(scrollable_frame, height=250, width=1600)
-        but2 = tk.Button(frame1, text=("ID: ", i["_id"], "Cena: ", i["Cena_koncowa"], "Status: ", i["status"]), bg='white', fg='blue', font=myFont, command = partial(szczegoly_zlecen, i["_id"]))
-        but2.pack(fill='both', expand=1)
-        frame1.pack_propagate(0)
-        frame1.grid(column=1, row=row_nr)
-        row_nr = row_nr + 1
+        if (czymiesiac == 'tak' and i["data"] >= datetime.datetime.today() - dateutil.relativedelta.relativedelta(months=1)) or czymiesiac == 'nie':
+            frame1 = tk.Frame(scrollable_frame, height=250, width=1600)
+            but2 = tk.Button(frame1, text=("ID: ", i["_id"], "Cena: ", i["Cena_koncowa"], "Status: ", i["status"], "Data i czas wpłynięcia: ", i["data"]), bg='white', fg='blue', font=myFont, command = partial(szczegoly_zlecen, i["_id"]))
+            but2.pack(fill='both', expand=1)
+            frame1.pack_propagate(0)
+            frame1.grid(column=1, row=row_nr)
+            row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
     canvas.pack(side="left", fill="both", expand=True)
