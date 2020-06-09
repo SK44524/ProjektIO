@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter.font import Font
 from tkinter import ttk
 import pymongo
-from pprint import pprint
 import requests
 from io import BytesIO
 from PIL import ImageTk, Image
@@ -50,7 +49,6 @@ class Klient:
         self.query = {"_id_klienta" : self.id}
         self.__numer_telefonu = None
         self.__email = None
-        self.__adres = None
 
     def zamow(self, items):
         mycol = mydb["Zamowienia"]
@@ -750,15 +748,16 @@ def koszyk(klient1):
     print(klient1.suma)
 
     def zamow():
-        lista = []
-        for key, value in klient1.koszyk_dict.items():
-            if value != None:
-                lista.append(value)
-        klient1.zamow(lista)
-        for i in klient1.koszyk_dict.keys():
-            klient1.koszyk_dict[i] = None
-        okno.destroy()
-        koszyk(klient1)
+        if (klient1.suma > 0):
+            lista = []
+            for key, value in klient1.koszyk_dict.items():
+                if value != None:
+                    lista.append(value)
+            klient1.zamow(lista)
+            for i in klient1.koszyk_dict.keys():
+                klient1.koszyk_dict[i] = None
+            okno.destroy()
+            koszyk(klient1)
 
     okno = tk.Toplevel(root)
 
