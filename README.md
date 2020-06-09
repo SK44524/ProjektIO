@@ -13,7 +13,10 @@ io,
 PIL,
 functools,
 datetime,
-numpy
+numpy,
+dateutils
+
+Do poprawnej pracy programu wymagane jest połączenie z interentem, ponieważ baza danych jest online. Bez internetu program nie bedzie w stanie wczytać potrzebnych danych.
 
 W repozytorium załączam również pełnego builda który powinien uruchomić się bez instalacji powyższych bibliotek.
 
