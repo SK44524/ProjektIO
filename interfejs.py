@@ -9,7 +9,7 @@ from functools import partial
 import datetime
 import numpy as np
 import dateutil.relativedelta
-import pkg_resources.py2_warn
+
 
 
 
@@ -229,8 +229,11 @@ def przypisz_zamowienia(admin1):
         row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def zmien_przypisania(admin1):
     okno_k = tk.Toplevel(root)
@@ -282,8 +285,11 @@ def zmien_przypisania(admin1):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def okno_przypisania(admin1, id):
 
@@ -366,8 +372,11 @@ def okno_przypisania(admin1, id):
         row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def zamowienia_wszystkie(czymiesiac):
     okno_k = tk.Toplevel(root)
@@ -423,8 +432,11 @@ def zamowienia_wszystkie(czymiesiac):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 #  ____________________________________________________________________________________
 
@@ -502,8 +514,11 @@ def przypisane_do_ciebie(pracownik1):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def pracownik_zlecenie_szczegoly(pracownik1, id):
     def order_details(id):
@@ -596,8 +611,11 @@ def pracownik_zlecenie_szczegoly(pracownik1, id):
         row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 
 
@@ -698,8 +716,11 @@ def szczegoly_zlecen(id):
         row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_zlecenie(klient1):
     okno_k = tk.Toplevel(root)
@@ -747,8 +768,11 @@ def klient_zlecenie(klient1):
         row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def koszyk(klient1):
 
@@ -1070,8 +1094,11 @@ def koszyk(klient1):
 
 
     container.place(relx=0, rely=0.4, relwidth=1, relheight=0.6)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_lista_proc(klient1):
     okno_k = tk.Toplevel(root)
@@ -1112,6 +1139,7 @@ def klient_lista_proc(klient1):
     container = ttk.Frame(okno_k)
     canvas = tk.Canvas(container)
     scrollbar = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
+
     scrollable_frame = ttk.Frame(canvas)
     scrollable_frame.bind(
         "<Configure>",
@@ -1123,6 +1151,7 @@ def klient_lista_proc(klient1):
     canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 
     canvas.configure(yscrollcommand=scrollbar.set)
+
 
     row_nr = 1
     for i in find_elements(mycol, myquery):
@@ -1147,8 +1176,11 @@ def klient_lista_proc(klient1):
 
 
     container.place(relx = 0, rely = 0.2, relwidth = 1, relheight = 0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_lista_dysk(klient1):
     okno_k = tk.Toplevel(root)
@@ -1218,8 +1250,11 @@ def klient_lista_dysk(klient1):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_lista_plyt(klient1):
     okno_k = tk.Toplevel(root)
@@ -1248,6 +1283,7 @@ def klient_lista_plyt(klient1):
     container = ttk.Frame(okno_k)
     canvas = tk.Canvas(container)
     scrollbar = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
     scrollable_frame = ttk.Frame(canvas)
     scrollable_frame.bind(
         "<Configure>",
@@ -1266,6 +1302,7 @@ def klient_lista_plyt(klient1):
     canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 
     canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.configure(xscrollcommand=scrollbar2.set)
 
     row_nr = 1
     for i in find_elements(mycol, myquery2):
@@ -1290,8 +1327,9 @@ def klient_lista_plyt(klient1):
                 row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_lista_pamiec(klient1):
     okno_k = tk.Toplevel(root)
@@ -1361,8 +1399,11 @@ def klient_lista_pamiec(klient1):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_lista_zasilacz(klient1):
     okno_k = tk.Toplevel(root)
@@ -1432,8 +1473,11 @@ def klient_lista_zasilacz(klient1):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_lista_obud(klient1):
     okno_k = tk.Toplevel(root)
@@ -1503,8 +1547,11 @@ def klient_lista_obud(klient1):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_lista_karta(klient1):
     okno_k = tk.Toplevel(root)
@@ -1574,8 +1621,11 @@ def klient_lista_karta(klient1):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_lista_chlod(klient1):
     okno_k = tk.Toplevel(root)
@@ -1620,7 +1670,6 @@ def klient_lista_chlod(klient1):
     powrot.place(relx=0.05, rely=0.05, relwidth=0.1, relheight=0.1)
 
     canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
-
     canvas.configure(yscrollcommand=scrollbar.set)
 
     row_nr = 1
@@ -1645,8 +1694,11 @@ def klient_lista_chlod(klient1):
             row_nr = row_nr + 1
 
     container.place(relx=0, rely=0.2, relwidth=1, relheight=0.8)
-    canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
+    scrollbar2 = ttk.Scrollbar(container, orient="horizontal", command=canvas.xview)
+    canvas.configure(xscrollcommand=scrollbar2.set)
+    scrollbar2.pack(side="bottom", fill="x")
+    canvas.pack(side="left", fill="both", expand=True)
 
 def klient_listacat(klient1):
     okno = tk.Toplevel(root)
