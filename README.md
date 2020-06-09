@@ -18,3 +18,5 @@ numpy
 W repozytorium załączam również pełnego builda który powinien uruchomić się bez instalacji powyższych bibliotek.
 
 Do wykonania projektu zostało wykorzystane IDE do pythona: PyCharm
+
+Zgodnie z uwagami na prezentacji, dodaliśmy dla Administratora opcję filtrowania wszystkich zamówień guzikiem "Ostatni Miesiąc"
