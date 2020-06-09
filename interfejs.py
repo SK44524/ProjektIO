@@ -48,6 +48,9 @@ class Klient:
         self.koszyk_dict = {"CPU" : None, "MOBO" : None, "GPU" : None, "RAM" : None, "Obudowa" : None, "Zasilacz" : None, "Chlodzenie" : None, "Dysk" : None}
         self.suma = 0
         self.query = {"_id_klienta" : self.id}
+        self.__numer_telefonu = None
+        self.__email = None
+        self.__adres = None
 
     def zamow(self, items):
         mycol = mydb["Zamowienia"]
@@ -88,6 +91,10 @@ class Klient:
             for x in rekord:
                 suma = suma + x['cena-brutto']
         self.suma = suma
+    def wyloguj(self):
+        pass
+    def zaloguj_sie(self):
+        pass
 
 
 class Admin:
@@ -95,6 +102,9 @@ class Admin:
         self.id = col_admin.find_one()["_id"]
         self.imie = col_admin.find_one()["Imie"]
         self.nazwisko = col_admin.find_one()["Nazwisko"]
+        self.__numer_telefonu = None
+        self.__email = None
+        self.stopien = None
 
     def przypisz(self, id, worker_id):
         mycol = mydb["Zamowienia"]
@@ -102,6 +112,10 @@ class Admin:
                       "status": "Przypisany pracownik"}}
         myquery = {"_id": id};
         mycol.update_one(myquery, new_values)
+    def wyloguj(self):
+        pass
+    def zaloguj_sie(self):
+        pass
 
 
 class Pracownik:
@@ -109,12 +123,20 @@ class Pracownik:
         self.id = col_pracownicy.find_one()["_id"]
         self.imie = col_pracownicy.find_one()["Imie"]
         self.nazwisko = col_pracownicy.find_one()["Nazwisko"]
+        self.__numer_telefonu = None
+        self.__email = None
+        self.numer_stanowiska = None
+        self.specjalizacja = None
 
     def zmien_status(self, id, status):
         mycol = mydb["Zamowienia"]
         myquery = {"_id": id};
         new_values = {"$set": {"status": status}}
         mycol.update_one(myquery, new_values)
+    def nawiaz_kontakt(self):
+        pass
+    def zaakceptuj_zlecenie(self):
+        pass
 
 # ADMIN SEKCJA: ______________________________________________________________________
 
