@@ -16,7 +16,7 @@ datetime,
 numpy,
 dateutils
 
-Do poprawnej pracy programu wymagane jest połączenie z interentem, ponieważ baza danych jest online. Bez internetu program nie bedzie w stanie wczytać potrzebnych danych.
+Do poprawnej pracy programu wymagane jest połączenie z interentem, ponieważ baza danych jest online. Bez internetu program nie bedzie w stanie wczytać potrzebnych danych. Obrazki które znajdują się w folderze z projektem są wymagane do poprawnego włączenia programu. W przypadku włączenia builda, obrazki również muszą znajdować się w folderze.
 
 W repozytorium załączam również pełnego builda który powinien uruchomić się bez instalacji powyższych bibliotek.
 
