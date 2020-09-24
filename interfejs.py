@@ -13,7 +13,7 @@ import dateutil.relativedelta
 
 
 
-client = pymongo.MongoClient("mongodb://projektio:haslo@projektio-shard-00-00-txmjx.mongodb.net:27017,projektio-shard-00-01-txmjx.mongodb.net:27017,projektio-shard-00-02-txmjx.mongodb.net:27017/test?ssl=true&replicaSet=ProjektIO-shard-0&authSource=admin&retryWrites=true&w=majority")
+client = pymongo.MongoClient("brak")
 mydb = client['Serwis_komputerowy']
 mycol = mydb["Przedmioty"]
 col_zlecenia = mydb["Zamowienia"]
